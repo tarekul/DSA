@@ -7,8 +7,8 @@ TO-DO Methods:
   get ✔️
   set ✔️
   insert ✔️
-  remove
-  reverse
+  remove ✔️
+  reverse ✔️
 */
 
 class Node {
