@@ -1,3 +1,7 @@
+/*
+  selectionsort is potentiall better than bubblesort if you want to avoid writing to memory alot because
+  you are swapping in the end of the subloop. Bubblesort on the other hand you are swapping many times.
+*/
 function selectionSort(arr) {
   for (let i = 0; i < arr.length - 1; i++) {
     let min = arr[i];
