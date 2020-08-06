@@ -3,24 +3,20 @@
   you are swapping in the end of the subloop. Bubblesort on the other hand you are swapping many times.
 */
 function selectionSort(arr) {
-  for (let i = 0; i < arr.length - 1; i++) {
-    let min = arr[i];
+  //first loop is to place smallest element in the leftmost unsorted index
+  for (let i = 0; i < arr.length; i++) {
+    let minIdx = i;
+    //second loop is to iterate over all elements to find smallest
     for (let j = i + 1; j < arr.length; j++) {
-      if (arr[j] < min) min = arr[j];
+      if (arr[j] < arr[minIdx]) minIdx = j;
     }
-    swap(arr, i, min);
+    swap(arr, i, minIdx);
   }
-  return arr;
+  console.log(arr);
 }
 
 const swap = (arr, idx1, idx2) => {
   [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
 };
 
-console.log(selectionSort([5, 1, 2, 3, 4]));
-/*
-[1,5,2,3,4]
-[1,2,5,3,4]
-[1,2,3,5,4]
-[1,2,3,4,5]
-*/
+selectionSort([5, 1, 2, 3, 4]);
