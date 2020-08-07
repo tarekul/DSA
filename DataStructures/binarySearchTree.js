@@ -63,11 +63,46 @@ class BST {
     }
     return result;
   }
+  pre_dfs() {
+    const result = [];
+    function traverse(node) {
+      result.push(node.val);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return result;
+  }
+  in_dfs() {
+    const result = [];
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      result.push(node.val);
+      if (node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return result;
+  }
+  post_dfs() {
+    const result = [];
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+      result.push(node.val);
+    }
+    traverse(this.root);
+    return result;
+  }
 }
 
 const bst = new BST();
-bst.insert(1);
-bst.insert(4);
+bst.insert(10);
 bst.insert(6);
-bst.insert(2);
-console.log(bst.bfs());
+bst.insert(3);
+bst.insert(8);
+bst.insert(15);
+bst.insert(20);
+console.log("breath first search", bst.bfs());
+console.log("preorder", bst.pre_dfs());
+console.log("inorder", bst.in_dfs());
+console.log("postorder", bst.post_dfs());
