@@ -51,7 +51,11 @@ class BST {
     else if (val <= node.val) return this.find(val, node.left);
     else if (val > node.val) return this.find(val, node.right);
   }
+  /*
+    Breath first is good for trees that are linear or lean to one side because 
+    than you are just storing ONE node each time and popping it off
 
+  */
   bfs() {
     const queue = [this.root];
     const result = [];
@@ -63,6 +67,10 @@ class BST {
     }
     return result;
   }
+  /*
+  One example of when pre order can be benefical is when you want to take a list and extract it into a tree
+  preorder return in a order that you reconstruct a tree
+  */
   pre_dfs() {
     const result = [];
     function traverse(node) {
@@ -73,6 +81,7 @@ class BST {
     traverse(this.root);
     return result;
   }
+  //inorder gives you the tree values from least to greatest
   in_dfs() {
     const result = [];
     function traverse(node) {
@@ -93,16 +102,37 @@ class BST {
     traverse(this.root);
     return result;
   }
+  /*
+  Depth first is good when you have a very wide tree. Its not space efficient to use breadth first search
+  as you are storing alot of nodes in memory as you go down the tree
+  */
+  //[10, 6, 3, 8, 15, 20]
+  preToTree(arr, start = 0, end = arr.length - 1) {
+    if (start > end) return null;
+
+    const node = new Node(arr[start]);
+    let i = start;
+    while (i <= end) {
+      if (node.val < arr[i]) break;
+      i++;
+    }
+
+    node.left = this.preToTree(arr, start + 1, i - 1);
+    node.right = this.preToTree(arr, i, end);
+
+    return node;
+  }
 }
 
 const bst = new BST();
-bst.insert(10);
-bst.insert(6);
-bst.insert(3);
-bst.insert(8);
-bst.insert(15);
-bst.insert(20);
-console.log("breath first search", bst.bfs());
-console.log("preorder", bst.pre_dfs());
-console.log("inorder", bst.in_dfs());
-console.log("postorder", bst.post_dfs());
+// bst.insert(10);
+// bst.insert(6);
+// bst.insert(3);
+// bst.insert(8);
+// bst.insert(15);
+// bst.insert(20);
+// console.log("breath first search", bst.bfs());
+// console.log("preorder", bst.pre_dfs());
+// console.log("inorder", bst.in_dfs());
+// console.log("postorder", bst.post_dfs());
+console.log(bst.preToTree([10, 6, 3, 8, 15, 20]));
