@@ -139,27 +139,18 @@ bst.insert(20);
 //console.log(bst.preToTree([10, 6, 3, 8, 15, 20]));
 
 //given a root of a tree determine if tree is a binary search tree
-function checkBst(root, result = []) {
-  //do inorder traversal and check if order is from least to greatest
-  if (root.left) checkBst(root.left, result);
-  result.push(root.val);
-  if (root.right) checkBst(root.right, result);
-  if (bubbleSortTweaked(result)) return true;
-  else return false;
-}
+function checkBst(
+  root,
+  min = Number.MIN_SAFE_INTEGER,
+  max = Number.MAX_SAFE_INTEGER
+) {
+  if (root === null) return true;
+  else if (root.val < min) return false;
+  else if (root.val > max) return false;
 
-function bubbleSortTweaked(arr) {
-  for (let i = arr.length; i >= 0; i--) {
-    let swap = false;
-    for (let j = 0; j < i; j++) {
-      if (arr[j] > arr[j + 1]) {
-        swap = true;
-        return false;
-      }
-    }
-    return true;
-  }
+  return (
+    checkBst(root.left, min, root.val) && checkBst(root.right, root.val, max)
+  );
 }
 
 console.log(checkBst(bst.root));
-//console.log(bubbleSortTweaked([3, 6, 8, 10, 15, 20]));
