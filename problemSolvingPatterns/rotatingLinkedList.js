@@ -5,21 +5,16 @@ e.g the start should be kth element, the second should be k+1th element
 const rotateRight = function (head, k) {
   if (!head) return head;
 
-  let current = head;
-  const arr = [];
-  while (current) {
-    arr.push(current.val);
-    current = current.next;
-  }
-
-  for (let i = 1; i <= k; i++) {
-    const e = arr.pop();
-    arr.unshift(e);
-  }
-  let node = head;
-  for (let i = 0; i < arr.length; i++) {
-    node.val = arr[i];
-    node = node.next;
+  for (let i = 0; i < k; i++) {
+    let tail = head;
+    let beforeTail = head;
+    while (tail.next) {
+      beforeTail = tail;
+      tail = tail.next;
+    }
+    tail.next = head;
+    head = tail;
+    beforeTail.next = null;
   }
   return head;
 };
