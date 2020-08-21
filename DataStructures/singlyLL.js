@@ -155,8 +155,10 @@ class SinglyLL {
 
 var list = new SinglyLL();
 list.push("hello");
-list.push("bye");
-list.unshift("sigh");
-list.unshift("ok");
-list.remove(2);
+list.pop();
+// list.push("bye");
+// list.push("alvida");
+// list.unshift("sigh");
+// list.unshift("ok");
+// list.remove(2);
 console.log(list.head);
