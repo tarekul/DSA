@@ -144,9 +144,9 @@ function checkBst(
   min = Number.MIN_SAFE_INTEGER,
   max = Number.MAX_SAFE_INTEGER
 ) {
-  if (root === null) return true;
-  else if (root.val < min) return false;
-  else if (root.val > max) return false;
+  if (root === null) return 1;
+  else if (root.val < min) return 0;
+  else if (root.val > max) return 0;
 
   return (
     checkBst(root.left, min, root.val) && checkBst(root.right, root.val, max)
