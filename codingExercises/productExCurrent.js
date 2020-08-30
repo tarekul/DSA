@@ -2,14 +2,13 @@ function prodExCurrent(arr) {
   const result = Array.from({ length: arr.length }, () => 1);
   let prod = 1;
   for (let i = 0; i < arr.length; i++) {
-    result[i] = prod;
-    prod = prod * arr[i]; //1
+    result[i] = result[i] * prod;
+    prod *= arr[i];
   }
-
   prod = 1;
   for (let i = arr.length - 1; i >= 0; i--) {
     result[i] = result[i] * prod;
-    prod = prod * arr[i];
+    prod *= arr[i];
   }
   console.log(result);
 }
