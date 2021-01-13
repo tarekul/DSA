@@ -9,12 +9,16 @@ function binarySearch(arr, val) {
   return -1;
 }
 
-function binarySearchRecur(arr, val, i = 0, j = arr.length - 1) {
-  const mid = Math.floor((i + j) / 2);
-  if (arr[mid] === val) return mid;
-  else if (i === j) return -1;
-  else if (val > arr[mid]) return binarySearchRecur(arr, val, (i = mid + 1));
-  else if (val < arr[mid]) return binarySearchRecur(arr, val, (j = mid - 1));
-}
+const binarySearchRec = (nums, target, left = 0, right = nums.length - 1) => {
+  if (left > right) return -1;
 
-console.log(binarySearchRecur([1, 2, 3, 6, 9, 15, 18, 20, 27, 28, 32], 27));
+  const mid = Math.floor((left + right) / 2);
+  if (nums[mid] === target) return mid;
+  else if (left === right) return -1;
+  else if (nums[mid] < target)
+    return binarySearchRec(nums, target, mid + 1, right);
+  else if (nums[mid] > target)
+    return binarySearchRec(nums, target, left, mid - 1);
+};
+
+console.log(binarySearchRecur([2,5], 0));
